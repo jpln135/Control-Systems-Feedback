@@ -1,0 +1,16 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+\draw
+(0, 0) node[op amp] (opamp) {$\mu$}
+(opamp.-) -- (-2, 0.35)
+(opamp.+) -- (-1,-0.35) to (-1,-0.5) node[ground]{}
+(1.5,-0.319) to [Tnigfetd,n=mos1] (1.5,0.681){}
+(-2,0.35) --(-2,-2)  to[R=$R_2$, i=$I_{f}$] (1.5,-2)  -| (mos1.S)
+(1.5,0.681)  to[short, i=$I_{0}$] (1.5,-2)
+(1.5,-2) to[R = $R_{1}$] (1.5,-4)  node[ground]{}
+(1.5,0) -| (mos1.G) {}
+(-2,-2) -- (-4,-2) to[R=$R_s$,o-] (-4,-4) node[ground]{}
+(-5,-4) to[I=$I_s$]  (-5,-2)  -- (-4,-2)  (-5,-4) node[ground] {}
+(mos1.D) -- (1.5,1)  -- (2,1) node[ground]{}
+
+;\end{circuitikz}

@@ -1,0 +1,11 @@
+\begin{circuitikz}
+\ctikzset{bipoles/length=1cm}
+\draw
+
+(0,0) to [Tnigfetd,n=mos1] (0,1){}
+(mos1.S) -- (1.25,0) to[R=$r_{02}$,*-*] (1.25,1) -|(mos1.D){}
+(mos1.G) --(-1,0.3)  to[R=$r_{01}$] (-2.5,0.25)  to[V=$\mu V_i$, i = 0] (-2.5,-1.7) node[ground]{}
+(mos1.S) --(0,-1) to[R=$R_1$] (0,-2) node[ground]{}
+(0,-1) --(-1,-1) to[R=$R_2$]  (-1,-2) node[ground]{}
+(mos1.D) -- (0,1.5)--(0.5,1.5) node[ground]{}
+;\end{circuitikz}
