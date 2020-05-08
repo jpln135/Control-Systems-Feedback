@@ -14,15 +14,18 @@ Assume that Opamp has an input resistance $R_{id}$, an Open Circuit Voltage Gain
 \end{figure}
 
 \item
-Represent the given circuit using a Small Signal Equivalent Model.
+Identify the type of Feedback Circuit and draw its corresponding Block Diagram Representation
 
 \solution
+The Feedback Circuit is a Shunt-Series Feedback Current Amplifier.
+
+It is represented in a Feedback Block Diagram as follows
 \begin{figure}[!ht]
 	\begin{center}
-		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Small_Signal_Model.tex}}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Shunt_Series_Block_Diagram.tex}}
 	\end{center}
-\caption{Small Signal Model}
-\label{fig:Small_Signal_Model}
+\caption{Shunt Series Amplifier Block Diagram}
+\label{fig:Shunt_Series_Block_Diagram}
 \end{figure}
 
 \item
@@ -38,6 +41,25 @@ Represent the Control System using a block diagram
 \end{figure}
 
 \item
+Represent the given circuit using a Small Signal Equivalent Model.
+
+\solution
+To draw Small Signal Equivalent model,
+
+\begin{itemize}
+    \item Replace MOSFET with Current Source and Resistance in parallel with it.
+    \item Replace Opamp with Voltage Source of the input Voltage multiplied by Gain
+\end{itemize}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Small_Signal_Model.tex}}
+	\end{center}
+\caption{Small Signal Model}
+\label{fig:Small_Signal_Model}
+\end{figure}
+
+\item
 Describe the resistances involved in the circuit
 
 \solution
@@ -49,9 +71,34 @@ Describe the resistances involved in the circuit
 \end{table}
 
 \item
-Find approximate expressions for G, $R_{i}$, $R_{o}$
+Draw the Block Diagram for the Gain Block, with the corresponding Circuit.
 
 \solution
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Gain_Block.tex}}
+	\end{center}
+\caption{Gain Block}
+\label{fig:Gain_Block}
+\end{figure}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Gain_Circuit.tex}}
+	\end{center}
+\caption{Gain Circuit}
+\label{fig:Gain_Circuit}
+\end{figure}
+
+\item
+Calculate $R_{11}$ and use it to find the Gain G.
+
+\solution
+$R_{11}$ is the resistance in parallel with the Resistance of the Source and the Input Impedance of the Opamp
+\begin{align}
+    R_{11} = R_{1} + R_{2}
+\end{align}
+
 \begin{align}
     R_{i}=R_{s}\|R_{i d}\|(R_{1}+R_{2})
 \end{align}
@@ -73,19 +120,51 @@ This is because the $\frac{1}{g_{m}}$ is in order of few \ohm s but, $R_{1}$, $R
 \begin{align}
     G =-\mu \frac{R_{i}}{R_{1} \| R_{2}}
 \end{align}
+
+\item
+Draw the Block Diagram for the Feedback Block, with the corresponding Circuit.
+
+\solution
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Feedback_Block.tex}}
+	\end{center}
+\caption{Feedback Block}
+\label{fig:Feedback_Block}
+\end{figure}
+
+\begin{figure}[!ht]
+	\begin{center}
+		\resizebox{\columnwidth}{!}{\input{figs/ee18btech11021/Feedback_Circuit.tex}}
+	\end{center}
+\caption{Feedback Circuit}
+\label{fig:Feedback_Circuit}
+\end{figure}
+
+\item
+Calculate $R_{22}$ and use it to find the Feedback Gain H.
+\solution
+From Feedback Circuit, $R_{22}$ is resistance obtained by shorting Feedback Network
+
 \begin{align}
-    R_{o}=r_{o 2}+(R_{1} \| R_{2})+(g_{m} r_{o 2})(R_{1} \| R_{2})
+    R_{22} = R_{1} \| R_{2}
 \end{align}
+
+$I_{f}$ is the current in $R_{2}$
 \begin{align}
-    \implies R_{o} \simeq g_{m} r_{o 2}\left(R_{1} \| R_{2}\right)
+    \implies H = \frac{I_{f}}{I_{o}}=-\frac{R_{1}}{R_{1}+R_{2}}
 \end{align}
 
 \item
-Find expression for Loop Gain H
+Calculate Loop Gain GH
 
 \solution
 \begin{align}
-    H = \frac{I_{f}}{I_{o}}=-\frac{R_{1}}{R_{1}+R_{2}}
+    GH=\mu \frac{R_{i}}{\frac{1}{g_{m}}+(R_{1}\|R_{2}\| r_{o 2})} \frac{r_{o 2}}{r_{o 2}+(R_{1} \| R_{2})} \frac{R_{1}}{R_{1}+R_{2}}
+\end{align}
+
+\begin{align}
+    \implies GH \simeq \mu \frac{R_{i}}{R_{1} \| R_{2}} \frac{R_{1}}{R_{1}+R_{2}}=\mu \frac{R_{i}}{R_{2}}
 \end{align}
 
 \item
@@ -100,25 +179,13 @@ Given,
     T = \frac{G}{1+GH}\simeq \frac{1}{H}
 \end{align}
 
-
 \begin{align}
     T \simeq \frac{1}{H}=-\left(1+\frac{R_{2}}{R_{1}}\right)
 \end{align}
 
 \item
-Give expressions for GH, $T$, $R_{if}$, $R_{in}$, $R_{of}$, $R_{out}$
+Give expressions for $R_{if}$, $R_{in}$
 
-\solution
-\begin{align}
-    GH=\mu \frac{R_{i}}{\frac{1}{g_{m}}+(R_{1}\|R_{2}\| r_{o 2})} \frac{r_{o 2}}{r_{o 2}+(R_{1} \| R_{2})} \frac{R_{1}}{R_{1}+R_{2}}
-\end{align}
-
-Once again, using the approximation,
-\begin{align}
-    \implies GH \simeq \mu \frac{R_{i}}{R_{1} \| R_{2}} \frac{R_{1}}{R_{1}+R_{2}}=\mu \frac{R_{i}}{R_{2}}
-\end{align}
-
-For Input Resistance,
 \begin{align}
     R_{if}=R_{i} /(1+GH)
 \end{align}
@@ -145,7 +212,16 @@ Substituting the value of $R_{i}$,
     R_{in} \simeq \frac{R_{2}}{\mu}
 \end{align}
 
-For Output Resistance,
+\item 
+Give expressions for $R_{o}$, $R_{of}$, $R_{out}$
+
+\solution
+\begin{align}
+    R_{o}=r_{o 2}+(R_{1} \| R_{2})+(g_{m} r_{o 2})(R_{1} \| R_{2})
+\end{align}
+\begin{align}
+    \implies R_{o} \simeq g_{m} r_{o 2}\left(R_{1} \| R_{2}\right)
+\end{align}
 \begin{align}
     R_{of}=R_{o}(1+GH) \simeq GH R_{o}
 \end{align}
